@@ -25,7 +25,7 @@ public class GlobeSortClient {
     private final ManagedChannel serverChannel;
     private final GlobeSortGrpc.GlobeSortBlockingStub serverStub;
 
-	private static int MAX_MESSAGE_SIZE = 100 * 1024 * 1024;
+    private static int MAX_MESSAGE_SIZE = 100 * 1024 * 1024;
 
     private String serverStr;
 
@@ -58,6 +58,7 @@ public class GlobeSortClient {
         System.out.println("Sorted array. Application throughput: " +  values.length / throughputSecs + " records per second");
 
         double sortTime = response.getSortTime();
+        System.out.println("Sort time took: " + sortTime + " seconds");
         double oneWayTPSecs = (throughputSecs - sortTime) / 2;
         System.out.println("One-way network throughput: " +  oneWayTPSecs + " seconds");
     }
