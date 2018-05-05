@@ -40,8 +40,13 @@ public class GlobeSortClient {
 
     public void run(Integer[] values) throws Exception {
         System.out.println("Pinging " + serverStr + "...");
+
+        long pingStart = System.currentTimeMillis();
         serverStub.ping(Empty.newBuilder().build());
-        System.out.println("Ping successful.");
+        long pingEnd = System.currentTimeMillis();
+        long latencyMillis = pingEnd - pingStart;
+        double latencySeconds = (double)latencyMillis / 1000;
+        System.out.println("Ping successful. Round-trip time: " + latencySeconds + " seconds");
 
         System.out.println("Requesting server to sort array");
         IntArray request = IntArray.newBuilder().addAllValues(Arrays.asList(values)).build();
