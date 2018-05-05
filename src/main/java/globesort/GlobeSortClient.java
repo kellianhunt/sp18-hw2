@@ -49,9 +49,13 @@ public class GlobeSortClient {
         System.out.println("Ping successful. Round-trip time: " + latencySeconds + " seconds");
 
         System.out.println("Requesting server to sort array");
+        long throughputStart = System.currentTimeMillis();
         IntArray request = IntArray.newBuilder().addAllValues(Arrays.asList(values)).build();
         IntArray response = serverStub.sortIntegers(request);
-        System.out.println("Sorted array");
+        long throughputEnd = System.currentTimeMillis();
+        long throughputMillis = throughputEnd - throughputStart;
+        double throughputSeconds = (double)throughputMillis / 1000;
+        System.out.println("Sorted array. Application throughput: " +  values.length / throughputSeconds + " records per second");
     }
 
     public void shutdown() throws InterruptedException {
