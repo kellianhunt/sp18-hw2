@@ -60,7 +60,7 @@ public class GlobeSortClient {
         double sortTime = response.getSortTime();
         System.out.println("Sort time took: " + sortTime + " seconds");
         double oneWayTPSecs = (throughputSecs - sortTime) / 2;
-        System.out.println("One-way network throughput: " +  oneWayTPSecs + " seconds");
+        System.out.println("One-way network throughput: " +  values.length / oneWayTPSecs + " seconds");
     }
 
     public void shutdown() throws InterruptedException {
