@@ -55,10 +55,11 @@ public class GlobeSortClient {
         long throughputEnd = System.currentTimeMillis();
         long throughputMillis = throughputEnd - throughputStart;
         double throughputSecs = (double)throughputMillis / 1000;
-        System.out.println("Sorted array. Application throughput: " +  values.length / throughputSecs + " records per second");
+        System.out.println("Sorted array. Total RPC call time: " + throughputSecs + " seconds");
+        System.out.println("Application throughput: " +  values.length / throughputSecs + " records per second");
 
         double sortTime = response.getSortTime();
-        System.out.println("Sort time took: " + sortTime + " seconds");
+        System.out.println("Sort time: " + sortTime + " seconds");
         double oneWayTPSecs = (throughputSecs - sortTime) / 2;
         System.out.println("One-way network throughput: " +  values.length / oneWayTPSecs + " seconds");
     }
